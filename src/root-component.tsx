@@ -10,7 +10,8 @@ const RootComponent: React.FC<RootComponentProps> = ({ basename }) => {
   return (
     <BrowserRouter basename={basename}>
       <Routes>
-        <Route path="/" element={<App />}></Route>
+        <Route path="/" element={<App />} />
+        <Route path="/route" element={<App />} />
       </Routes>
     </BrowserRouter>
   );

@@ -10,4 +10,10 @@ export default defineConfig({
     cors: true,
     origin: "http://localhost:5173",
   },
+  build: {
+    lib: {
+      entry: 'src/main.tsx',
+      formats: ['umd'],
+    },
+  },
 });
