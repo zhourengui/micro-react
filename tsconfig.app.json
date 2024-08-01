@@ -21,7 +21,11 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@/generated/*": ["./generated/*"],
+      "@/src/*": ["./src/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["src", "src/stores/global-data-atom.ts"]
 }

@@ -2,12 +2,18 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import { useMicroApp } from "./micro-app/hooks/use-micro-app";
+import { useRecoilValue } from "recoil";
+import { globalDataState } from "./stores/global-data-atom";
 
 function App() {
+  useMicroApp();
   const [count, setCount] = useState(0);
+  const globalData = useRecoilValue(globalDataState);
 
   return (
     <div className="flex flex-col items-center">
+      <div>GlobalData: {JSON.stringify(globalData)}</div>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
