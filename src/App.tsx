@@ -11,7 +11,9 @@ function App() {
 
   return (
     <div className="flex flex-col items-center">
-      <div>MicroAppCommunication: {JSON.stringify(microAppCommunication)}</div>
+      <div>
+        MicroAppCommunication: {JSON.stringify(microAppCommunication, null, 2)}
+      </div>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
