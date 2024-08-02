@@ -27,5 +27,5 @@
       "@/src/*": ["./src/*"]
     }
   },
-  "include": ["src", "src/stores/global-data-atom.ts"]
+  "include": ["src", "generated/proto/**/*"]
 }
