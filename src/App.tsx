@@ -4,7 +4,7 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import { useRecoilValue } from "recoil";
 import { globalDataState } from "./stores";
-import { MicroAppCommunicationChannel } from "@/generated/proto/element_pb";
+import { MicroAppCommunicationChannel } from "@/generated/proto/element";
 import { useMicroApp } from "./hooks";
 
 function App() {
