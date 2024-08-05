@@ -15,6 +15,10 @@ interface MicroApp {
   ) => void;
 
   removeDataListener: (listener: (data: MicroAppCommunication) => void) => void;
+
+  forceDispatch: (payload: SingleDataPayload, callback?: nextStep) => void;
+
+  appName: string;
 }
 
 interface Window {

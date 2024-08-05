@@ -3,17 +3,29 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import { useRecoilValue } from "recoil";
-import { microAppCommunicationState } from "./recoil/micro-app-communication-atom";
+import { globalDataState } from "./stores";
+import { MicroAppCommunicationChannel } from "@/generated/proto/element_pb";
+import { useMicroApp } from "./hooks";
 
 function App() {
   const [count, setCount] = useState(0);
-  const microAppCommunication = useRecoilValue(microAppCommunicationState);
+  const globalData = useRecoilValue(globalDataState);
+  const { forceDispatch } = useMicroApp();
 
   return (
     <div className="flex flex-col items-center">
-      <div>
-        MicroAppCommunication: {JSON.stringify(microAppCommunication, null, 2)}
-      </div>
+      <div>MicroAppCommunication: {JSON.stringify(globalData, null, 2)}</div>
+
+      <button
+        onClick={() =>
+          forceDispatch({
+            payload: { random: Math.random() },
+            channel: MicroAppCommunicationChannel.REACT_MAIN_CHANNEL1,
+          })
+        }
+      >
+        向主应用发送数据
+      </button>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />

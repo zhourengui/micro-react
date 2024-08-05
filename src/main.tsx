@@ -3,7 +3,7 @@ import App from "./App.tsx";
 import ReactDOM from "react-dom/client";
 import React from "react";
 import { RecoilRoot } from "recoil";
-import { MicroAppContextProvider } from "./micro-app/index.ts";
+import { MicroAppContextProvider } from "./micro-app-context-provider.tsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 

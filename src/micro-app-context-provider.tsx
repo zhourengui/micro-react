@@ -1,9 +1,7 @@
 import { useRecoilState } from "recoil";
 import React, { useEffect } from "react";
-import {
-  microAppCommunicationState,
-  MicroAppCommunicatioPayload,
-} from "@/src/recoil/micro-app-communication-atom";
+import { globalDataState } from "./stores";
+import { GlobalDataPayload, SingleDataPayload } from "./interfaces";
 
 interface MicroAppContextProviderProps {
   children: React.ReactNode;
@@ -12,19 +10,12 @@ interface MicroAppContextProviderProps {
 export const MicroAppContextProvider: React.FC<MicroAppContextProviderProps> = (
   props
 ) => {
-  const [_, setMicroAppCommunication] = useRecoilState(
-    microAppCommunicationState
-  );
+  const [_, setGlobalData] = useRecoilState(globalDataState);
 
   // 监听全局数据变化
   useEffect(() => {
-    function globalDataListener(payload: MicroAppCommunicatioPayload) {
-      setMicroAppCommunication((prevState) => {
-        return {
-          ...prevState,
-          [payload.channel]: payload,
-        };
-      });
+    function globalDataListener(payload: GlobalDataPayload) {
+      setGlobalData(payload);
     }
 
     window.microApp?.addGlobalDataListener?.(globalDataListener, true);
@@ -36,11 +27,8 @@ export const MicroAppContextProvider: React.FC<MicroAppContextProviderProps> = (
 
   // 监听主应用传给当前应用的数据
   useEffect(() => {
-    function dataListener(payload: MicroAppCommunicatioPayload) {
-      setMicroAppCommunication((prevState) => ({
-        ...prevState,
-        [payload.channel]: payload,
-      }));
+    function dataListener(payload: SingleDataPayload) {
+      alert(`[React] 接收到主应用的数据: ${JSON.stringify(payload, null, 2)}`);
     }
 
     window?.microApp?.addDataListener?.(dataListener, true);
